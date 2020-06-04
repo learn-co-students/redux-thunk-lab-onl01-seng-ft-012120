@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import App from './App'
+import {Provider} from 'react-redux';
+import { creatStore, applyMiddleware } from 'react-redux';
+import thunk from 'redux-thunk';
+import catReducer from './reducers/catsReducer';
 
-
+const store = creatStore(catReducer, applyMiddleware(thunk));
 ReactDOM.render(
-    <App />,
+    <Provider store = {store}>
+        <App />
+    </Provider>,
     document.getElementById('root')
 );
